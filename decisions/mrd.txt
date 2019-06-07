@@ -1,0 +1,113 @@
+country_decisions = {
+	# For adm power surplus
+	
+	coin_money = {
+		potential = {
+			always = yes
+		}
+		
+		allow = {
+			adm_power = 950
+		}
+		
+		effect = {
+			add_adm_power = -100
+			add_years_of_income = 0.5
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		
+		ai_importance = 0
+	}
+	
+	# For dip power surplus
+	
+	conscript_sailor = {
+		potential = {
+			navy_size = 1
+		}
+		
+		allow = {
+			dip_power = 950
+		}
+		
+		effect = {
+			add_dip_power = -100
+			add_yearly_sailors = 0.5
+		}
+		
+		ai_will_do = {
+			factor = 0
+
+		}
+		
+		ai_importance = 0
+	}
+	
+	navy_education = {
+		potential = {
+			navy_size = 1
+		}
+		
+		allow = {
+			dip_power = 950
+		}
+		
+		effect = {
+			add_dip_power = -100
+			add_navy_tradition = 5
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		
+		ai_importance = 0
+	}
+	
+	# For mil power surplus
+	
+	conscript_soldier = {
+		potential = {
+			always = yes
+		}
+		
+		allow = {
+			mil_power = 950
+		}
+		
+		effect = {
+			add_mil_power = -100
+			add_yearly_manpower = 0.5
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		
+		ai_importance = 0
+	}
+	
+	army_education = {
+		potential = {
+			always = yes
+		}
+		
+		allow = {
+			mil_power = 950
+		}
+		
+		effect = {
+			add_mil_power = -100
+			add_army_tradition = 5
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+		
+		ai_importance = 0
+	}
+}

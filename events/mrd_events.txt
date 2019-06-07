@@ -1,0 +1,1991 @@
+namespace = mrd
+namespace = mrdtest
+
+# Set up the counter
+country_event = {
+	id = mrd.0
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		ai = no
+	}
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	option = {
+		every_country = {
+			limit = {
+				ai = no
+			}
+			country_event = {
+				id = mrd.7
+				days = 730
+			}
+			set_variable = {
+				which = taxGrowth
+				value = 0
+			}
+			set_variable = {
+				which = productionGrowth
+				value = 0
+			}
+			set_variable = {
+				which = manpowerGrowth
+				value = 0
+			}
+			set_variable = {
+				which = taxLoss
+				value = 0
+			}
+			set_variable = {
+				which = productionLoss
+				value = 0
+			}
+			set_variable = {
+				which = manpowerLoss
+				value = 0
+			}
+			set_variable = {
+				which = grossDevelopment
+				value = 0
+			}
+			set_variable = {
+				which = grossVassalDevelopment
+				value = 0
+			}
+		}
+	}
+}
+
+# For developing a province
+province_event = {
+	id = mrd.1
+	hidden = yes
+
+	trigger = {
+		NOT = { devastation = 1 }
+	}
+
+	mean_time_to_happen = {
+		months = 480
+
+		# Universal modifiers that affect all three developments
+
+		# Terrains
+
+		modifier = {
+			factor = 0.95
+			has_terrain = farmlands
+		}
+
+		modifier = {
+			factor = 1.05
+			has_terrain = drylands
+		}
+
+		modifier = {
+			factor = 1.15
+			has_terrain = woods
+		}
+
+		modifier = {
+			factor = 1.15
+			has_terrain = savannah
+		}
+
+		modifier = {
+			factor = 1.2
+			has_terrain = forest
+		}
+
+		modifier = {
+			factor = 1.2
+			has_terrain = steppe
+		}
+
+		modifier = {
+			factor = 1.2
+			has_terrain = highlands
+		}
+
+		modifier = {
+			factor = 1.25
+			has_terrain = marsh
+		}
+
+		modifier = {
+			factor = 1.25
+			has_terrain = hills
+		}
+
+		modifier = {
+			factor = 1.25
+			has_terrain = coastline
+		}
+
+		modifier = {
+			factor = 1.35
+			has_terrain = mountain
+		}
+
+		modifier = {
+			factor = 1.35
+			has_terrain = jungle
+		}
+
+		modifier = {
+			factor = 1.35
+			has_terrain = coastal_desert
+		}
+
+		modifier = {
+			factor = 1.5
+			has_terrain = desert
+		}
+
+		# Climates
+
+		modifier = {
+			factor = 1.15
+			has_climate = tropical
+		}
+
+		modifier = {
+			factor = 1.15
+			has_climate = arid
+		}
+
+		modifier = {
+			factor = 1.5
+			has_climate = arctic
+		}
+
+		# Edicts
+
+		modifier = {
+			factor = 0.9
+			has_state_edict = edict_encourage_development
+		}
+
+		# Trade goods
+
+		modifier = {
+			factor = 0.9
+			trade_goods = cloth
+		}
+
+		modifier = {
+			factor = 0.9
+			trade_goods = cotton
+		}
+
+		# Buildings
+
+		modifier = {
+			factor = 0.8
+			has_building = university
+		}
+
+		# Capital Bonus based on state size
+
+		modifier = {
+			factor = 0.95
+			owner = { total_development = 100 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.9
+			owner = { total_development = 200 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.85
+			owner = { total_development = 400 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.8
+			owner = { total_development = 800 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.75
+			owner = { total_development = 1600 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.7
+			owner = { total_development = 3200 }
+			is_capital = yes
+		}
+
+		# Based on province development
+
+		modifier = {
+			factor = 0.95
+			development = 10
+		}
+
+		modifier = {
+			factor = 0.9
+			development = 20
+		}
+
+		modifier = {
+			factor = 0.85
+			development = 30
+		}
+
+		modifier = {
+			factor = 0.8
+			development = 40
+		}
+
+		modifier = {
+			factor = 0.75
+			development = 50
+		}
+
+		# Colonial nations
+
+		modifier = {
+			factor = 0.75
+			owner = {
+				OR = {
+					is_colonial_nation = yes
+					is_former_colonial_nation = yes
+				}
+			}
+		}
+
+		# Prosperity
+
+		modifier = {
+			factor = 0.9
+			is_prosperous = yes
+		}
+		
+		# Trade center
+		
+		modifier = {
+			factor = 0.95
+			province_has_center_of_trade_of_level = 2
+			NOT = { province_has_center_of_trade_of_level = 3 }
+		}
+		
+		modifier = {
+			factor = 0.9
+			province_has_center_of_trade_of_level = 3
+		}
+
+		# Global modifier
+		
+		modifier = {
+			factor = 1.5
+			owner = {
+				has_global_modifier_value = {
+					which = development_cost
+					value = 0.5
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.45
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.5
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.45
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.4
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.45
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.4
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.35
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.4
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.35
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.30
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.35
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.3
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.25
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.3
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.25
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.2
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.25
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.2
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.15
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.2
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.15
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.1
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.15
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.1
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.05
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.1
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.05
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.95
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.05
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.9
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.05
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.1
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.85
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.1
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.15
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.8
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.15
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.2
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.75
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.2
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.25
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.7
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.25
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.3
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.65
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.3
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.35
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.6
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.35
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.4
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.55
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.4
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.45
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.5
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.45
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.5
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.45
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.5
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.55
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.4
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.55
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.6
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.35
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.6
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.65
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.3
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.65
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.7
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.25
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.7
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.75
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.2
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.75
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.8
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.15
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.8
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.85
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.1
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.85
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.9
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.05
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.9
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.95
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0
+			owner = {
+				NOT = {
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.95
+					}
+				}
+			}
+		}
+
+		# Province modifier
+
+	}
+
+	option = {
+		random_list = {
+			33 = {
+				add_base_tax = 1
+				owner = {
+					change_variable = {
+						which = taxGrowth
+						value = 1
+					}
+					change_variable = {
+						which = grossDevelopment
+						value = 1
+					}
+				}
+				if = {
+					limit = {
+						owner = {
+							OR = {
+								is_vassal = yes
+								is_lesser_in_union = yes
+							}
+						}
+					}
+					owner = {
+						overlord = {
+							change_variable = {
+								which = grossVassalDevelopment
+								value = 1
+							}
+						}
+					}
+				}
+				if = {
+					limit = { owner = { is_colonial_nation = yes } }
+					owner = {
+						colonial_parent = {
+							change_variable = {
+								which = grossVassalDevelopment
+								value = 1
+							}
+						}
+					}
+				}
+			}
+			33 = {
+				add_base_production = 1
+				owner = {
+					change_variable = {
+						which = productionGrowth
+						value = 1
+					}
+					change_variable = {
+						which = grossDevelopment
+						value = 1
+					}
+				}
+				if = {
+					limit = {
+						owner = {
+							OR = {
+								is_vassal = yes
+								is_lesser_in_union = yes
+							}
+						}
+					}
+					owner = {
+						overlord = {
+							change_variable = {
+								which = grossVassalDevelopment
+								value = 1
+							}
+						}
+					}
+				}
+				if = {
+					limit = { owner = { is_colonial_nation = yes } }
+					owner = {
+						colonial_parent = {
+							change_variable = {
+								which = grossVassalDevelopment
+								value = 1
+							}
+						}
+					}
+				}
+			}
+			33 = {
+				add_base_manpower = 1
+				owner = {
+					change_variable = {
+						which = manpowerGrowth
+						value = 1
+					}
+					change_variable = {
+						which = grossDevelopment
+						value = 1
+					}
+				}
+				if = {
+					limit = {
+						owner = {
+							OR = {
+								is_vassal = yes
+								is_lesser_in_union = yes
+							}
+						}
+					}
+					owner = {
+						overlord = {
+							change_variable = {
+								which = grossVassalDevelopment
+								value = 1
+							}
+						}
+					}
+				}
+				if = {
+					limit = { owner = { is_colonial_nation = yes } }
+					owner = {
+						colonial_parent = {
+							change_variable = {
+								which = grossVassalDevelopment
+								value = 1
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# For damaging a province
+province_event = {
+	id = mrd.2
+	hidden = yes
+
+	trigger = {
+		devastation = 10
+		OR = {
+			base_tax = 2
+			base_production = 2
+			base_manpower = 2
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 480
+
+		# Devastation
+
+		modifier = {
+			factor = 0.9
+			devastation = 20
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 30
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 40
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 50
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 60
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 70
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 80
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 90
+		}
+
+		modifier = {
+			factor = 0.9
+			devastation = 100
+		}
+	}
+
+	option = {
+		if = {
+			limit = {
+				base_tax = 2
+				base_production = 2
+				base_manpower = 2
+			}
+
+			random_list = {
+				33 = {
+					add_base_tax = -1
+					owner = {
+						change_variable = {
+							which = taxLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+				33 = {
+					add_base_production = -1
+					owner = {
+						change_variable = {
+							which = productionLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+				33 = {
+					add_base_manpower = -1
+					owner = {
+						change_variable = {
+							which = manpowerLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				base_production = 2
+				base_manpower = 2
+			}
+
+			random_list = {
+				50 = {
+					add_base_production = -1
+					owner = {
+						change_variable = {
+							which = productionLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+				50 = {
+					add_base_manpower = -1
+					owner = {
+						change_variable = {
+							which = manpowerLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				base_tax = 2
+				base_manpower = 2
+			}
+
+			random_list = {
+				50 = {
+					add_base_tax = -1
+					owner = {
+						change_variable = {
+							which = taxLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+				50 = {
+					add_base_manpower = -1
+					owner = {
+						change_variable = {
+							which = manpowerLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				base_tax = 2
+				base_production = 2
+			}
+
+			random_list = {
+				50 = {
+					add_base_tax = -1
+					owner = {
+						change_variable = {
+							which = taxLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+				50 = {
+					add_base_production = -1
+					owner = {
+						change_variable = {
+							which = productionLoss
+							value = 1
+						}
+						subtract_variable = {
+							which = grossDevelopment
+							value = 1
+						}
+					}
+					if = {
+						limit = {
+							owner = {
+								OR = {
+									is_vassal = yes
+									is_lesser_in_union = yes
+								}
+							}
+						}
+						owner = {
+							overlord = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+					if = {
+						limit = { owner = { is_colonial_nation = yes } }
+						owner = {
+							colonial_parent = {
+								subtract_variable = {
+									which = grossVassalDevelopment
+									value = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { base_tax = 2 }
+
+			add_base_tax = -1
+			owner = {
+				change_variable = {
+					which = taxLoss
+					value = 1
+				}
+				subtract_variable = {
+					which = grossDevelopment
+					value = 1
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							is_vassal = yes
+							is_lesser_in_union = yes
+						}
+					}
+				}
+				owner = {
+					overlord = {
+						subtract_variable = {
+							which = grossVassalDevelopment
+							value = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = { owner = { is_colonial_nation = yes } }
+				owner = {
+					colonial_parent = {
+						subtract_variable = {
+							which = grossVassalDevelopment
+							value = 1
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { base_production = 2 }
+
+			add_base_production = -1
+			owner = {
+				change_variable = {
+					which = productionLoss
+					value = 1
+				}
+				subtract_variable = {
+					which = grossDevelopment
+					value = 1
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							is_vassal = yes
+							is_lesser_in_union = yes
+						}
+					}
+				}
+				owner = {
+					overlord = {
+						subtract_variable = {
+							which = grossVassalDevelopment
+							value = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = { owner = { is_colonial_nation = yes } }
+				owner = {
+					colonial_parent = {
+						subtract_variable = {
+							which = grossVassalDevelopment
+							value = 1
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { base_manpower = 2 }
+
+			add_base_manpower = -1
+			owner = {
+				change_variable = {
+					which = manpowerLoss
+					value = 1
+				}
+				subtract_variable = {
+					which = grossDevelopment
+					value = 1
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							is_vassal = yes
+							is_lesser_in_union = yes
+						}
+					}
+				}
+				owner = {
+					overlord = {
+						subtract_variable = {
+							which = grossVassalDevelopment
+							value = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = { owner = { is_colonial_nation = yes } }
+				owner = {
+					colonial_parent = {
+						subtract_variable = {
+							which = grossVassalDevelopment
+							value = 1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = mrd.7
+	title = "mrd_7_title"
+	desc = "mrd_7_desc"
+	is_triggered_only = yes
+
+	trigger = {
+		ai = no
+	}
+
+	option = {
+		name = "mrd_7_option"
+		hidden_effect = {
+			set_variable = {
+				which = taxGrowth
+				value = 0
+			}
+			set_variable = {
+				which = productionGrowth
+				value = 0
+			}
+			set_variable = {
+				which = manpowerGrowth
+				value = 0
+			}
+			set_variable = {
+				which = taxLoss
+				value = 0
+			}
+			set_variable = {
+				which = productionLoss
+				value = 0
+			}
+			set_variable = {
+				which = manpowerLoss
+				value = 0
+			}
+			set_variable = {
+				which = grossDevelopment
+				value = 0
+			}
+			set_variable = {
+				which = grossVassalDevelopment
+				value = 0
+			}
+			country_event = {
+				id = mrd.7
+				days = 730
+			}
+		}
+	}
+}
+
+# Development census
+country_event = {
+	id = mrdtest.0
+	title = "mrdtest_0_title"
+	desc = "mrdtest_0_desc"
+	is_triggered_only = yes
+
+	trigger = {
+		ai = no
+	}
+
+	option = {
+		name = "mrdtest_0_option"
+		hidden_effect = {
+			set_variable = {
+				which = development1
+				value = 0
+			}
+			set_variable = {
+				which = development10
+				value = 0
+			}
+			set_variable = {
+				which = development20
+				value = 0
+			}
+			set_variable = {
+				which = development30
+				value = 0
+			}
+			set_variable = {
+				which = development40
+				value = 0
+			}
+			set_variable = {
+				which = development50
+				value = 0
+			}
+			set_variable = {
+				which = development60
+				value = 0
+			}
+			set_variable = {
+				which = development70
+				value = 0
+			}
+			set_variable = {
+				which = development80
+				value = 0
+			}
+			set_variable = {
+				which = development90
+				value = 0
+			}
+			set_variable = {
+				which = development100
+				value = 0
+			}
+			set_variable = {
+				which = totalProvince
+				value = 0
+			}
+			every_province = {
+				if = {
+					limit = { development = 100 }
+					
+					PREV = {
+						change_variable = {
+							which = development100
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 90 }
+					
+					PREV = {
+						change_variable = {
+							which = development90
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 80 }
+					
+					PREV = {
+						change_variable = {
+							which = development80
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 70 }
+					
+					PREV = {
+						change_variable = {
+							which = development70
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 60 }
+					
+					PREV = {
+						change_variable = {
+							which = development60
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 50 }
+					
+					PREV = {
+						change_variable = {
+							which = development50
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 40 }
+					
+					PREV = {
+						change_variable = {
+							which = development40
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 30 }
+					
+					PREV = {
+						change_variable = {
+							which = development30
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 20 }
+					
+					PREV = {
+						change_variable = {
+							which = development20
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else_if = {
+					limit = { development = 10 }
+					
+					PREV = {
+						change_variable = {
+							which = development10
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+				else = {
+					PREV = {
+						change_variable = {
+							which = development1
+							value = 1
+						}
+						change_variable = {
+							which = totalProvince
+							value = 1
+						}
+					}
+				}
+			}
+			set_variable = {
+				which = development1Percentage
+				which = development1
+			}
+			set_variable = {
+				which = development10Percentage
+				which = development10
+			}
+			set_variable = {
+				which = development20Percentage
+				which = development20
+			}
+			set_variable = {
+				which = development30Percentage
+				which = development30
+			}
+			set_variable = {
+				which = development40Percentage
+				which = development40
+			}
+			set_variable = {
+				which = development50Percentage
+				which = development50
+			}
+			set_variable = {
+				which = development60Percentage
+				which = development60
+			}
+			set_variable = {
+				which = development70Percentage
+				which = development70
+			}
+			set_variable = {
+				which = development80Percentage
+				which = development80
+			}
+			set_variable = {
+				which = development90Percentage
+				which = development90
+			}
+			set_variable = {
+				which = development100Percentage
+				which = development100
+			}
+			divide_variable = {
+				which = development1Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development10Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development20Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development30Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development40Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development50Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development60Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development70Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development80Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development90Percentage
+				which = totalProvince
+			}
+			divide_variable = {
+				which = development100Percentage
+				which = totalProvince
+			}
+			multiply_variable = {
+				which = development1Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development10Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development20Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development30Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development40Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development50Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development60Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development70Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development80Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development90Percentage
+				value = 100
+			}
+			multiply_variable = {
+				which = development100Percentage
+				value = 100
+			}
+			country_event = {
+				id = mrdtest.1
+				days = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = mrdtest.1
+	title = "mrdtest_1_title"
+	desc = "mrdtest_1_desc"
+	is_triggered_only = yes
+
+	trigger = {
+		ai = no
+	}
+
+	option = {
+		name = "mrdtest_1_option"
+	}
+}
