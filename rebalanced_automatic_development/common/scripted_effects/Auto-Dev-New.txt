@@ -1,0 +1,64 @@
+set_variables_to_zero = {
+    set_variable = {
+        which = taxGrowth
+        value = 0
+    }
+    set_variable = {
+        which = productionGrowth
+        value = 0
+    }
+    set_variable = {
+        which = manpowerGrowth
+        value = 0
+    }
+    set_variable = {
+        which = taxLoss
+        value = 0
+    }
+    set_variable = {
+        which = productionLoss
+        value = 0
+    }
+    set_variable = {
+        which = manpowerLoss
+        value = 0
+    }
+    set_variable = {
+        which = grossDevelopment
+        value = 0
+    }
+    set_variable = {
+        which = grossVassalDevelopment
+        value = 0
+    }
+}
+
+remove_tax = {
+    add_base_tax = -1
+    owner = {
+        change_variable = {
+            which = taxLoss
+            value = 1
+        }
+    }
+}
+
+remove_production = {
+    add_base_production = -1
+    owner = {
+        change_variable = {
+            which = productionLoss
+            value = 1
+        }
+    }
+}
+
+remove_manpower = {
+    add_base_manpower = -1
+    owner = {
+        change_variable = {
+            which = manpowerLoss
+            value = 1
+        }
+    }
+}

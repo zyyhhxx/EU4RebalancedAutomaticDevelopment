@@ -1,0 +1,29 @@
+
+has_enough_all = {
+    base_tax = 2
+    base_production = 2
+    base_manpower = 2
+}
+
+has_enough_tax_production = {
+    base_tax = 2
+    base_production = 2
+}
+
+has_enough_tax_manpower = {
+    base_tax = 2
+    base_manpower = 2
+}
+
+has_enough_tax = {
+    base_tax = 2
+}
+
+has_enough_production = {
+    base_production = 2
+}
+
+has_enough_production_manpower = {
+    base_production = 2
+    base_manpower = 2
+}

@@ -1,0 +1,85 @@
+# ROOT = country
+
+can_improve_tax = {
+	condition = {
+		potential = {
+			OR = {
+				is_capital = no
+				AND = {
+					is_capital = yes
+					OR = {
+						FROM = { NOT = { total_development = 100 } }
+						AND = {
+							development = 30
+							NOT = { current_age = age_of_revolutions }
+						}
+						AND = {
+							current_age = age_of_revolutions
+							FROM = { NOT = { total_development = 300 } }
+						}
+						development = 50
+					}
+				}
+			}
+		}
+		allow = {
+			always = no
+		}
+	}
+}
+
+can_improve_production = {
+	condition = {
+		potential = {
+			OR = {
+				is_capital = no
+				AND = {
+					is_capital = yes
+					OR = {
+						FROM = { NOT = { total_development = 100 } }
+						AND = {
+							development = 30
+							NOT = { current_age = age_of_revolutions }
+						}
+						AND = {
+							current_age = age_of_revolutions
+							FROM = { NOT = { total_development = 300 } }
+						}
+						development = 50
+					}
+				}
+			}
+		}
+		allow = {
+			always = no
+		}
+	}
+}
+
+can_improve_manpower = {
+	condition = {
+		potential = {
+			OR = {
+				is_capital = no
+				AND = {
+					is_capital = yes
+					OR = {
+						FROM = { NOT = { total_development = 100 } }
+						AND = {
+							development = 30
+							NOT = { current_age = age_of_revolutions }
+						}
+						AND = {
+							current_age = age_of_revolutions
+							FROM = { NOT = { total_development = 300 } }
+						}
+						development = 50
+					}
+				}
+			}
+		}
+		allow = {
+			always = no
+		}
+	}
+}
