@@ -41,206 +41,226 @@ province_event = {
 	mean_time_to_happen = {
 		months = 480
 
+		# Universal modifiers that affect all three developments
+
+		# Terrains
+
 		modifier = {
-			factor = 0.05
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.9
-				}
-			}
+			factor = 0.95
+			has_terrain = farmlands
 		}
-		
+
 		modifier = {
-			factor = 0.1
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.9
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.8
-				}
-			}
+			factor = 1.05
+			has_terrain = drylands
 		}
-		
+
 		modifier = {
-			factor = 0.2
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.8
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.7
-				}
-			}
+			factor = 1.15
+			has_terrain = woods
 		}
-		
+
 		modifier = {
-			factor = 0.3
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.7
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.6
-				}
-			}
+			factor = 1.15
+			has_terrain = savannah
 		}
-		
+
 		modifier = {
-			factor = 0.4
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.6
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.5
-				}
-			}
+			factor = 1.2
+			has_terrain = forest
 		}
-		
+
 		modifier = {
-			factor = 0.5
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.5
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.4
-				}
-			}
+			factor = 1.2
+			has_terrain = steppe
 		}
-		
+
 		modifier = {
-			factor = 0.6
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.4
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.3
-				}
-			}
+			factor = 1.2
+			has_terrain = highlands
 		}
-		
+
 		modifier = {
-			factor = 0.7
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.3
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.2
-				}
-			}
+			factor = 1.25
+			has_terrain = marsh
 		}
-		
+
 		modifier = {
-			factor = 0.8
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.2
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = -0.1
-				}
-			}
+			factor = 1.25
+			has_terrain = hills
 		}
-		
+
+		modifier = {
+			factor = 1.25
+			has_terrain = coastline
+		}
+
+		modifier = {
+			factor = 1.35
+			has_terrain = mountain
+		}
+
+		modifier = {
+			factor = 1.35
+			has_terrain = jungle
+		}
+
+		modifier = {
+			factor = 1.35
+			has_terrain = coastal_desert
+		}
+
+		modifier = {
+			factor = 1.5
+			has_terrain = desert
+		}
+
+		# Climates
+
+		modifier = {
+			factor = 1.15
+			has_climate = tropical
+		}
+
+		modifier = {
+			factor = 1.15
+			has_climate = arid
+		}
+
+		modifier = {
+			factor = 1.5
+			has_climate = arctic
+		}
+
+		# Edicts
+
 		modifier = {
 			factor = 0.9
-			has_local_modifier_value = {
-				which = development_cost
-				value = -0.1
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0
-				}
-			}
+			has_state_edict = edict_encourage_development
 		}
-		
+
+		# Trade goods
+
 		modifier = {
-			factor = 1
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.1
-				}
-			}
+			factor = 0.9
+			trade_goods = cloth
 		}
-		
+
 		modifier = {
-			factor = 1
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.1
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.2
+			factor = 0.9
+			trade_goods = cotton
+		}
+
+		# Buildings
+
+		modifier = {
+			factor = 0.8
+			has_building = university
+		}
+
+		# Capital Bonus based on state size
+
+		modifier = {
+			factor = 0.95
+			owner = { total_development = 100 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.9
+			owner = { total_development = 200 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.85
+			owner = { total_development = 400 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.8
+			owner = { total_development = 800 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.75
+			owner = { total_development = 1600 }
+			is_capital = yes
+		}
+
+		modifier = {
+			factor = 0.7
+			owner = { total_development = 3200 }
+			is_capital = yes
+		}
+
+		# Based on province development
+
+		modifier = {
+			factor = 0.95
+			development = 10
+		}
+
+		modifier = {
+			factor = 0.9
+			development = 20
+		}
+
+		modifier = {
+			factor = 0.85
+			development = 30
+		}
+
+		modifier = {
+			factor = 0.8
+			development = 40
+		}
+
+		modifier = {
+			factor = 0.75
+			development = 50
+		}
+
+		# Colonial nations
+
+		modifier = {
+			factor = 0.75
+			owner = {
+				OR = {
+					is_colonial_nation = yes
+					is_former_colonial_nation = yes
 				}
 			}
 		}
 
+		# Prosperity
+
 		modifier = {
-			factor = 1.1
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.2
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.3
-				}
-			}
+			factor = 0.9
+			is_prosperous = yes
+		}
+		
+		# Trade center
+		
+		modifier = {
+			factor = 0.95
+			province_has_center_of_trade_of_level = 2
+			NOT = { province_has_center_of_trade_of_level = 3 }
 		}
 		
 		modifier = {
-			factor = 1.2
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.3
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.4
-				}
-			}
+			factor = 0.9
+			province_has_center_of_trade_of_level = 3
 		}
+
+		# Global modifier
 		
 		modifier = {
-			factor = 1.3
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.4
-			}
-			NOT = {
-				has_local_modifier_value = {
+			factor = 1.5
+			owner = {
+				has_global_modifier_value = {
 					which = development_cost
 					value = 0.5
 				}
@@ -248,83 +268,523 @@ province_event = {
 		}
 		
 		modifier = {
+			factor = 1.45
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.5
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.45
+					}
+				}
+			}
+		}
+		
+		modifier = {
 			factor = 1.4
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.5
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.6
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.45
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.4
+					}
 				}
 			}
 		}
 		
 		modifier = {
-			factor = 1.5
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.6
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.7
+			factor = 1.35
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.4
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.35
+					}
 				}
 			}
 		}
 		
 		modifier = {
-			factor = 1.6
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.7
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.8
+			factor = 1.30
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.35
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.3
+					}
 				}
 			}
 		}
 		
 		modifier = {
-			factor = 1.7
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.8
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 0.9
+			factor = 1.25
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.3
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.25
+					}
 				}
 			}
 		}
 		
 		modifier = {
-			factor = 1.8
-			has_local_modifier_value = {
-				which = development_cost
-				value = 0.9
-			}
-			NOT = {
-				has_local_modifier_value = {
-					which = development_cost
-					value = 1
+			factor = 1.2
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.25
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.2
+					}
 				}
 			}
 		}
 		
 		modifier = {
-			factor = 1.9
-			has_local_modifier_value = {
-				which = development_cost
-				value = 1
+			factor = 1.15
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.2
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.15
+					}
+				}
 			}
 		}
 		
+		modifier = {
+			factor = 1.1
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.15
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.1
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 1.05
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0.1
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = 0.05
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.95
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = 0
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.05
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.9
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.05
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.1
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.85
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.1
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.15
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.8
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.15
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.2
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.75
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.2
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.25
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.7
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.25
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.3
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.65
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.3
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.35
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.6
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.35
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.4
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.55
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.4
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.45
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.5
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.45
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.5
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.45
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.5
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.55
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.4
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.55
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.6
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.35
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.6
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.65
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.3
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.65
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.7
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.25
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.7
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.75
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.2
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.75
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.8
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.15
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.8
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.85
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.1
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.85
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.9
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0.05
+			owner = {
+				AND = {
+					NOT = {
+						has_global_modifier_value = {
+							which = development_cost
+							value = -0.9
+						}
+					}
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.95
+					}
+				}
+			}
+		}
+		
+		modifier = {
+			factor = 0
+			owner = {
+				NOT = {
+					has_global_modifier_value = {
+						which = development_cost
+						value = -0.95
+					}
+				}
+			}
+		}
+
+		# Province modifier
+
 	}
 
 	option = {
@@ -376,6 +836,7 @@ province_event = {
 				}
 			}
 		}
+		
 		if = {
 			limit = { owner = { is_colonial_nation = yes } }
 			owner = {
@@ -394,7 +855,6 @@ province_event = {
 				value = 1
 			}
 		}
-
 	}
 }
 
